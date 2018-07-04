@@ -1,0 +1,271 @@
+@import './var.less';
+
+
+/**
+ * 一个模块化的Less基础类库，包含reset、栅格系统、原子类、常用class和浏览器兼容等模块
+ * import此less后，手动调用init方法来生成你需要的模块
+ */
+
+// 启动所有模块，模块参数保持默认，不建议使用
+.init-all() {
+  .init-grid();
+  .init-margin();
+  .init-padding();
+  .init-common();
+  .init-reset();
+}
+
+/**
+ * [init-grid 生成栅格化系统]
+ * @param  {[Number]} @count:   12          [栅格数]
+ * @param  {[type]} @padding: 15px          [栅格左右padding]
+ * @param  {[type]} @width:   100%          [container宽度，设为百分比则为响应式布局]
+ * @param  {[type]} @pre:     @pre          [前缀]
+ */
+.init-grid(@count: 12, @padding: 15px, @width: 100%, @pre: @pre) {
+    .column() {
+        float: left;
+        padding-left: @padding;
+        padding-right: @padding;
+        min-height: 1px;
+        .box-sizing(border-box);
+    }
+    
+    .@{pre}-container {
+        padding-left: @padding;
+        padding-right: @padding;
+        width: @width;
+    }
+    
+    .@{pre}-row {
+        margin-left: -@padding;
+        margin-right: -@padding;
+        *zoom: 1;
+        &:before, &:after {
+            content: " "; 
+            display: table; 
+            line-height: 0;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    
+    // 递归生成栅格
+    .build-column(@i) when (@i > 0) {
+        .build-column((@i - 1));
+        
+        .@{pre}-col-@{i} {
+            width: percentage(@i / @count);
+            .column();
+        }
+        .@{pre}-col-offset-@{i} {
+            margin-left: percentage(@i / @count);
+        }
+    }
+
+    .build-column(@count);
+}
+
+/**
+ * [init-margin 生成一定范围的margin原子类]
+ * @param  {[Number]} @min:   0             [最小值]
+ * @param  {[Number]} @max:   100           [最大值]
+ * @param  {[Number]} @space: 5             [间距]
+ * @param  {[String]} @pre:   @pre          [前缀]
+ */
+.init-margin(@min: 0, @max: 100, @space: 5, @pre: @pre) {
+    // 递归生成margin
+    .build-margin(@count) when (@count >= @min) {
+        .build-margin((@count - @space));
+        
+        .@{pre}-mt-@{count} {
+            margin-top: @count * 1px;
+        }
+        .@{pre}-mb-@{count} {
+            margin-bottom: @count * 1px;
+        }
+        .@{pre}-mtb-@{count} {
+            margin-top: @count * 1px;
+            margin-bottom: @count * 1px;
+        }
+        
+        .@{pre}-ml-@{count} {
+            margin-left: @count * 1px;
+        }
+        .@{pre}-mr-@{count} {
+            margin-right: @count * 1px;
+        }
+        .@{pre}-mlr-@{count} {
+            margin-left: @count * 1px;
+            margin-right: @count * 1px;
+        }
+        
+        .@{pre}-ma-@{count} {
+            margin: @count * 1px;
+        }
+    }
+    
+    .build-margin(@max);
+}
+
+/**
+ * [init-padding 生成一定范围的padding原子类]
+ * @param  {[Number]} @min:   0             [最小值]
+ * @param  {[Number]} @max:   100           [最大值]
+ * @param  {[Number]} @space: 5             [间距]
+ * @param  {[String]} @pre:   @pre          [前缀]
+ */
+.init-padding(@min: 0, @max: 100, @space: 5, @pre: @pre) {
+    // 递归生成padding
+    .build-padding(@count) when (@count >= @min) {
+        .build-padding((@count - @space));
+
+        .@{pre}-pt-@{count} {
+            padding-top: @count * 1px;
+        }
+        .@{pre}-pb-@{count} {
+            padding-bottom: @count * 1px;
+        }
+        .@{pre}-ptb-@{count} {
+            padding-top: @count * 1px;
+            padding-bottom: @count * 1px;
+        }
+
+        .@{pre}-pl-@{count} {
+            padding-left: @count * 1px;
+        }
+        .@{pre}-pr-@{count} {
+            padding-right: @count * 1px;
+        }
+        .@{pre}-plr-@{count} {
+            padding-left: @count * 1px;
+            padding-right: @count * 1px;
+        }
+
+        .@{pre}-pa-@{count} {
+            padding: @count * 1px;
+        }
+    }
+
+    .build-padding(@max);
+}
+
+/**
+ * [init-common 生成常用class]
+ * @param  {[type]} @pre: @pre          [前缀]
+ */
+.init-common(@pre: @pre) {
+    .@{pre}-clearfix {
+        *zoom: 1;
+        &:before, &:after {
+            content: " "; 
+            display: table; 
+            line-height: 0;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    // 超出长度的文本显示省略号
+    .@{pre}-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    // 配合父元素的overflow: hidden，可以实现多栏等高
+    // 3000不够可以自己调大
+    .@{pre}-high {
+        margin-bottom: -3000px;
+        padding-bottom: 3000px
+    }
+    .@{pre}-hide {
+        display: none;
+    }
+    .@{pre}-circle {
+        border-radius: 50%;
+    }
+    // overflow: hidden可以开启BFC，这是CSS布局最有用的一个属性之一
+    .@{pre}-bfc {
+        overflow: hidden;
+    }
+    .@{pre}-fl {
+        float: left;
+    }
+    .@{pre}-fr {
+        float: right;
+    }
+    .@{pre}-tac {
+        text-align: center;
+    }
+    .@{pre}-tar {
+        text-align: right;
+    }
+    .@{pre}-tal {
+        text-align: left;
+    }
+    .@{pre}-width-full {
+        width: 100%;
+    }
+    .@{pre}-height-full {
+        height: 100%;
+    }
+    .@{pre}-m0 {
+        margin: 0 !important;
+    }
+    .@{pre}-p0 {
+        padding: 0 !important;
+    }
+}
+
+// reset
+.init-reset() {
+  html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+  header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+  table{border-collapse:collapse;border-spacing:0;}
+  caption,th{text-align:left;font-weight:normal;}
+  html,body,fieldset,img,iframe,abbr{border:0;}
+  i,cite,em,var,address,dfn{font-style:normal;}
+  [hidefocus],summary{outline:0;}
+  li{list-style:none;}
+  h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+  sup,sub{font-size:83%;}
+  pre,code,kbd,samp{font-family:inherit;}
+  q:before,q:after{content:none;}
+  textarea{overflow:auto;resize:none;}
+  label,summary{cursor:default;}
+  a,button{cursor:pointer;}
+  h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+  del,ins,u,s,a,a:hover{text-decoration:none;}
+  body,textarea,input,button,select,keygen,legend{outline:0;}
+  a,a:visited,a:hover,a:link,a:active{color:inherit;text-decoration: none;}
+}
+
+// 浏览器兼容
+.opacity(@opacity) {
+    opacity: @opacity;
+    //IE
+    @opacity-ie: @opacity * 100;
+    -ms-filter: ~"alpha(opacity=@{opacity-ie})";
+}
+.rgba (@r, @g ,@b, @a) {
+    background-color: rgba(@r, @g, @b, @a);
+    //IE
+    @color: argb(rgba(@r, @g, @b, @a));
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color}, endColorstr=@{color})"';
+    // IE9同时支持滤镜和rgba，所以去掉滤镜
+    :root & {
+        filter: none\9;
+    }
+}
+
+// 最后一个参数为false，在低级浏览器上不使用透明，以提高性能
+.rgba(@r, @g, @b, @a, false) {
+    background-color: rgb(@r, @g, @b);
+    background-color: rgba(@r, @g, @b, @a);
+}
+.box-sizing(@box-model) {
+    -webkit-box-sizing: @box-model;
+    -moz-box-sizing: @box-model;
+    box-sizing: @box-model;
+}
