@@ -23,7 +23,7 @@ export default class Login extends Component {
     }).then(res => {
       console.log(res)
       if(res.success) {
-        this.props.history.push('/detail')
+        this.props.history.push('/list')
       }
     })
   }
