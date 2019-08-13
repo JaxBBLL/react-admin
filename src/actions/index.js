@@ -1,6 +1,7 @@
-import { ADD, MINUS, LIST } from "../constants";
+import { ADD, MINUS, LIST, DECODE } from "../constants";
 import { createAction } from "../utils/redux";
 import { API_POETRY } from "../constants/api";
+import Jsonp from "../utils/jsonp";
 
 export const add = () => {
   return {
@@ -23,12 +24,33 @@ export function asyncAdd() {
   };
 }
 
-export const fetchList = name =>
+export const fetchList = city =>
   createAction({
     url: API_POETRY,
     method: "GET",
     type: LIST,
     payload: {
-      name
+      city
     }
   });
+
+export const decode = address => {
+  return dispatch => {
+    Jsonp({
+      url: "http://api.map.baidu.com/geocoder/v2/",
+      data: {
+        address: address,
+        output: "json",
+        ak: "GRdh3Gcjzyb8PVGskyEahNpR73mgX981"
+      },
+      callback: "callback",
+      success: data => {
+        console.log(data)
+        dispatch({
+          type: DECODE,
+          payload: data.result.location
+        });
+      }
+    });
+  };
+};

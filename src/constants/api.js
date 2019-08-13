@@ -1,1 +1,1 @@
-export const API_POETRY = "https://api.apiopen.top/likePoetry";
+export const API_POETRY = "https://www.apiopen.top/weatherApi";

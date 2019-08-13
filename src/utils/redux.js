@@ -1,4 +1,4 @@
-import http from './http'
+import { http } from "./http";
 
 export function createAction(options) {
   const { method, url, payload, type } = options;
@@ -7,8 +7,8 @@ export function createAction(options) {
       dispatch({
         type,
         payload: res.result
-      })
-      return res
-    })
-  }
+      });
+      return res;
+    });
+  };
 }
