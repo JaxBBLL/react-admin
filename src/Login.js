@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import http from 'common/http';
 
 export default class Login extends Component {
   constructor(props) {
@@ -15,17 +14,7 @@ export default class Login extends Component {
     this.setState({[prop]: value})
   }
   loginSubmit() {
-    console.log('login')
-    http.post('/api/v1/admin/login', {
-      userName: this.state.userName,
-      password: this.state.password,
-      captcha: 1234
-    }).then(res => {
-      console.log(res)
-      if(res.success) {
-        this.props.history.push('/list')
-      }
-    })
+   
   }
   render() {
     return (

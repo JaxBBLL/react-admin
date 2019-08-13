@@ -1,27 +1,30 @@
-import 'style/app.less'
-import React, { Component } from 'react';
-import {
-  NavLink ,
-  HashRouter as Router
-} from 'react-router-dom'
-import Page from './Page.js'
+import React, { Component } from "react";
+import { NavLink, HashRouter as Router } from "react-router-dom";
+import Page from "./Page.js";
 class Layout extends Component {
   render() {
     return (
       <Router>
-        <div className="app-wrap">
-        <section className="app-nav">
-          <p className="app-logo">JaxAdmin</p>
-          <ul className="app-menu">
-            <li className="app-menu-item"><NavLink to="/detail">detail</NavLink ></li>
-            <li className="app-menu-item"><NavLink to="/list">List</NavLink ></li>
-          </ul>
-        </section>
-         
-          <section className="app-main">
-            <header className="app-header"></header>
-            <section className="app-container">
-              <Page/>
+        <div className="g-app">
+          <section className="g-header" />
+          <section className="g-body">
+            <section className="g-side">
+              <ul className="menu">
+                <li className="menu-item">
+                  <NavLink to="/home">Home</NavLink>
+                </li>
+                <li className="menu-item">
+                  <NavLink to="/detail">detail</NavLink>
+                </li>
+                <li className="menu-item">
+                  <NavLink to="/list">List</NavLink>
+                </li>
+              </ul>
+            </section>
+            <section className="g-main">
+              <section className="g-container">
+                <Page />
+              </section>
             </section>
           </section>
         </div>
