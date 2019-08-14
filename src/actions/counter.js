@@ -1,4 +1,4 @@
-import { ADD, MINUS, LIST, DECODE } from "../constants";
+import { ADD, MINUS, LIST, DECODE } from "../constants/counter";
 import { createAction } from "../utils/redux";
 import { API_POETRY } from "../constants/api";
 import Jsonp from "../utils/jsonp";

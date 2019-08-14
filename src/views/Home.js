@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as mapDispatchToProps from "../actions";
+import * as mapDispatchToProps from "../actions/counter";
 
 @connect(
   ({ counter }) => ({ counter }),
