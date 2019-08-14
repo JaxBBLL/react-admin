@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as mapDispatchToProps from "../actions/counter";
+import { Button } from "antd";
 
 @connect(
   ({ counter }) => ({ counter }),
@@ -14,16 +15,16 @@ class Home extends Component {
     const { lat, lng } = this.props.counter.location;
     return (
       <div>
-        <button onClick={this.props.add}>+</button>
-        <button onClick={this.props.minus}>-</button>
-        <button onClick={this.props.asyncAdd}>async</button>
-        <button
-          onClick={() => {
-            this.props.decode("杭州");
-          }}
-        >
+        <Button type="primary" onClick={this.props.add}>
+          +
+        </Button>
+        <Button type="danger" onClick={this.props.minus}>
+          -
+        </Button>
+        <Button onClick={this.props.asyncAdd}>async</Button>
+        <Button onClick={() => this.props.decode("杭州")}>
           获取经纬度
-        </button>
+        </Button>
         <div>
           <span>{this.props.counter.num}</span>
           <p>

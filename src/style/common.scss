@@ -3,7 +3,8 @@
 
 @include mix-normalize-plus();
 
-$h: 0px;
+$h: 50px;
+$active-color: #50718e;
 
 .g-app {
   position: relative;
@@ -34,9 +35,9 @@ $h: 0px;
         padding-left: 20px;
         height: 40px;
         line-height: 40px;
-        color: #a7e9ee;
+        color: #fff;
         &.active {
-          background: #04837a;
+          background: $active-color;
           color: #fff;
         }
       }
