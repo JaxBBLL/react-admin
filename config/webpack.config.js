@@ -293,6 +293,9 @@ module.exports = function(webpackEnv) {
         "@": path.join(__dirname, "..", "src"),
         "@views": path.join(__dirname, "..", "src/views"),
         "@components": path.join(__dirname, "..", "src/components"),
+        "@router": path.join(__dirname, "..", "src/router"),
+        "@store": path.join(__dirname, "..", "src/store"),
+        "@utils": path.join(__dirname, "..", "src/utils"),
         "@style": path.join(__dirname, "..", "src/style")
       },
       plugins: [

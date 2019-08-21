@@ -8,9 +8,6 @@ import { Button } from "antd";
   mapDispatchToProps
 )
 class Home extends Component {
-  componentWillMount() {
-    console.log(this.props);
-  }
   render() {
     const { lat, lng } = this.props.counter.location;
     return (

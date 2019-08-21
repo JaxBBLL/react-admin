@@ -25,23 +25,23 @@ $active-color: #50718e;
     background: $bgc;
     overflow: hidden;
     height: calc(100vh - #{$h});
-    .menu {
-      background-color: $bgc;
-    }
-    .menu-item {
-      a {
-        display: block;
-        box-sizing: border-box;
-        padding-left: 20px;
-        height: 40px;
-        line-height: 40px;
-        color: #fff;
-        &.active {
-          background: $active-color;
-          color: #fff;
-        }
-      }
-    }
+    // .menu {
+    //   background-color: $bgc;
+    // }
+    // .menu-item {
+    //   a {
+    //     display: block;
+    //     box-sizing: border-box;
+    //     padding-left: 20px;
+    //     height: 40px;
+    //     line-height: 40px;
+    //     color: #fff;
+    //     &.active {
+    //       background: $active-color;
+    //       color: #fff;
+    //     }
+    //   }
+    // }
   }
   .g-main {
     height: 100%;
