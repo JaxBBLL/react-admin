@@ -31,9 +31,24 @@ class Layout extends Component {
                     </span>
                   }
                 >
-                  <CustomNavLink to="/home" tag="li">Home</CustomNavLink>
-                  <CustomNavLink to="/detail" tag="li">detail</CustomNavLink>
-                  <CustomNavLink to="/list" tag="li">List</CustomNavLink>
+                  <CustomNavLink
+                    to="/home"
+                    tag="li"
+                    className="ant-menu-item"
+                    activeClassName="ant-menu-item ant-menu-item-selected"
+                    style={{ paddingLeft: 40 }}
+                  >
+                    Home
+                  </CustomNavLink>
+                  <CustomNavLink
+                    to="/list"
+                    tag="li"
+                    className="ant-menu-item"
+                    activeClassName="ant-menu-item ant-menu-item-selected"
+                    style={{ paddingLeft: 40 }}
+                  >
+                    list
+                  </CustomNavLink>
                 </SubMenu>
               </Menu>
             </section>

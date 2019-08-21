@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as mapDispatchToProps from "../actions/counter";
 import { Button } from "antd";
+import CustomNavLink from "@components/CustomNavLink";
 
 @connect(
   ({ counter }) => ({ counter }),
@@ -18,10 +19,10 @@ class Home extends Component {
         <Button type="danger" onClick={this.props.minus}>
           -
         </Button>
-        <Button onClick={this.props.asyncAdd}>async</Button>
-        <Button onClick={() => this.props.decode("杭州")}>
-          获取经纬度
-        </Button>
+        <Button onClick={() => this.props.decode("杭州")}>获取经纬度</Button>
+        <CustomNavLink to="/list" tag="button" className="ant-btn">
+          去列表
+        </CustomNavLink>
         <div>
           <span>{this.props.counter.num}</span>
           <p>

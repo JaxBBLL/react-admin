@@ -2,15 +2,14 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 const CustomNavLink = props => {
+  const { tag = "a", activeClassName, className, style } = props;
   return React.createElement(
-    props.tag,
+    tag,
     {
-      style: { paddingLeft: 40 },
-      onClick: () => props.history.push(props.to),
       className:
-        props.location.pathname === props.to
-          ? "ant-menu-item ant-menu-item-selected"
-          : "ant-menu-item"
+        props.location.pathname === props.to ? activeClassName : className,
+      style,
+      onClick: () => props.history.push(props.to)
     },
     props.children
   );
