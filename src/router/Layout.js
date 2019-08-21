@@ -11,7 +11,9 @@ class Layout extends Component {
     return (
       <Router>
         <div className="g-app">
-          <section className="g-header" />
+          <section className="g-header">
+            <h3>React Admin</h3>
+          </section>
           <section className="g-body">
             <section className="g-side">
               <Menu
@@ -25,13 +27,13 @@ class Layout extends Component {
                   title={
                     <span>
                       <Icon type="setting" />
-                      <span>示例菜单</span>
+                      <span>菜单</span>
                     </span>
                   }
                 >
-                  <CustomNavLink to="/home">Home</CustomNavLink>
-                  <CustomNavLink to="/detail">detail</CustomNavLink>
-                  <CustomNavLink to="/list">List</CustomNavLink>
+                  <CustomNavLink to="/home" tag="li">Home</CustomNavLink>
+                  <CustomNavLink to="/detail" tag="li">detail</CustomNavLink>
+                  <CustomNavLink to="/list" tag="li">List</CustomNavLink>
                 </SubMenu>
               </Menu>
             </section>
