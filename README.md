@@ -1,6 +1,10 @@
 # react-admin
 
-一个使用 create-react-app 创建 react 项目的 demo
+一个使用 create-react-app 创建 react 项目的 demo，添加了redux数据管理
+
+## 预览
+
+![image](https://github.com/JaxBBLL/react-admin/raw/master/public/view.gif)
 
 ## 释放配置
 
