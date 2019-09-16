@@ -37,7 +37,7 @@ export const fetchList = city =>
 export const decode = address => {
   return dispatch => {
     Jsonp({
-      url: "http://api.map.baidu.com/geocoder/v2/",
+      url: "//api.map.baidu.com/geocoder/v2/",
       data: {
         address: address,
         output: "json",
