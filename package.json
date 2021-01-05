@@ -10,7 +10,7 @@
   "homepage": "/react-admin",
   "dependencies": {
     "antd": "^3.21.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "react": "^16.9.0",
     "react-app-polyfill": "^1.0.2",
     "react-dom": "^16.9.0",
